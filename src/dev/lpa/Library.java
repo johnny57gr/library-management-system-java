@@ -101,9 +101,14 @@ public class Library {
 
         if (selectedMember != null && selectedBook != null){
             System.out.println("Book is available");
-            selectedMember.getListOfBooks().add(selectedBook);
+            selectedMember.borrowBook(selectedBook);
             System.out.println("Book successfully borrow to member: " + selectedMember.getName() + " with id: " + selectedMember.getId());
             selectedBook.setAvailable(false);
+        }
+
+        if (!selectedBook.isAvailable()) {
+            System.out.println("Book is already borrowed.");
+            return;
         }
     }
 
@@ -131,7 +136,7 @@ public class Library {
 
         if (selectedBook != null) {
             selectedBook.setAvailable(true);
-            selectedMember.getListOfBooks().remove(selectedBook);
+            selectedMember.returnBook(selectedBook);
             System.out.println("Book returned successfully!");
         }
         else {

@@ -65,6 +65,14 @@ public class Member {
                 '}';
     }
 
-    // TODO: borrowBook(Book book)
-    // TODO: returnBook(Book book)
+
+    public void borrowBook(Book book){
+        this.listOfBooks.add(book);
+        System.out.println("Book borrowed by: " + this.name);
+    }
+
+    public void returnBook(Book book) {
+        this.listOfBooks.remove(book);
+        System.out.println("Book returned by: " + this.name);
+    }
 }
