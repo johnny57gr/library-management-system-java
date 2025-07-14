@@ -93,10 +93,12 @@ public class Library {
 
         if (selectedMember == null) {
             System.out.println("Member not found");
+            return;
         }
 
         if (selectedBook == null) {
             System.out.println("Book not found");
+            return;
         }
 
         if (selectedMember != null && selectedBook != null){

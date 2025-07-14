@@ -5,6 +5,18 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+
+    private static String inputOrBack(String prompt, Scanner scanner) {
+        System.out.print(prompt);
+        String input = scanner.nextLine();
+
+        if(input.equalsIgnoreCase("back")) {
+            System.out.println("Returning to main menu...");
+            return null;
+        }
+        return input;
+    }
+
     public static void main(String[] args) {
 
         List<Book> addBook = new ArrayList<>();
@@ -39,14 +51,14 @@ public class Main {
                 case 1 -> {
                     System.out.println("Add Book selected");
 
-                    System.out.print("Enter book title: ");
-                    String title = scanner.nextLine();
+                    String title = inputOrBack("Enter book title (or 'back' to cancel): ", scanner);
+                    if (title == null) break;
 
-                    System.out.print("Enter book author: ");
-                    String author = scanner.nextLine();
+                    String author = inputOrBack("Enter author (or 'back' to cancel): ", scanner);
+                    if (author == null) break;
 
-                    System.out.print("Enter book ISBN: ");
-                    String isbn = scanner.nextLine();
+                    String isbn = inputOrBack("Enter book ISBN (or 'back' to cancel): ", scanner);
+                    if (isbn == null) break;
 
                     Book newBook = new Book(title, author, isbn, true);
                     library.addBook(newBook);
@@ -60,17 +72,18 @@ public class Main {
                 case 3 -> {
                     System.out.println("Register Member selected. Create new member.");
 
-                    System.out.print("Enter new member name: ");
-                    String name = scanner.nextLine();
+                    String name = inputOrBack("Enter new member name (or 'back' to cancel): ", scanner);
+                    if (name == null) break;
 
-                    System.out.print("Enter new member id: ");
-                    String id = scanner.nextLine();
+                    String id = inputOrBack("Enter new member id (or 'back' to cancel): ", scanner);
+                    if (id == null) break;
 
-                    System.out.print("Enter new member email: ");
-                    String email = scanner.nextLine();
+                    String email = inputOrBack("Enter new member email (or 'back' to cancel): ", scanner);
+                    if (email == null) break;
 
                     System.out.print("Enter new member phone: ");
-                    String phone = scanner.nextLine();
+                    String phone = inputOrBack("Enter new member phone (or 'back' to cancel): ", scanner);
+                    if (phone == null) break;
 
                     Member newMember = new Member(name, id, email, phone, new ArrayList<>());
                     library.addMember(newMember);
@@ -84,27 +97,56 @@ public class Main {
                 case 5 -> {
                     System.out.println("Borrow Book selected");
 
-                    System.out.print("Please enter member id: ");
-                    String memberId = scanner.nextLine();
+                    String memberId = inputOrBack("Please enter member ID (or 'back' to cancel): ", scanner);
+                    if (memberId == null) break;
 
+                    // Check if member exists
+                    Member selectedMember = null;
+                    for (Member member : library.getListOfMembers()) {
+                        if (memberId.equalsIgnoreCase(member.getId())) {
+                            selectedMember = member;
+                            break;
+                        }
+                    }
 
-                    System.out.print("Please enter book isbn: ");
-                    String isbn = scanner.nextLine();
+                    if (selectedMember == null) {
+                        System.out.println("Member not found. Please try again or register a member first.");
+                        break;
+                    }
+
+                    // Continue only if member exists
+                    String isbn = inputOrBack("Please enter book ISBN (or 'back' to cancel): ", scanner);
+                    if (isbn == null) break;
 
                     library.borrowBook(isbn, memberId);
                 }
 
+
                 case 6 -> {
                     System.out.println("Return Book selected");
 
-                    System.out.print("Please enter member id: ");
-                    String memberId = scanner.nextLine();
+                    String memberId = inputOrBack("Please enter member ID (or 'back' to cancel): ", scanner);
+                    if (memberId == null) break;
 
-                    System.out.print("Please enter book isbn: ");
-                    String isbn = scanner.nextLine();
+                    Member selectedMember = null;
+                    for (Member member : library.getListOfMembers()) {
+                        if (memberId.equalsIgnoreCase(member.getId())) {
+                            selectedMember = member;
+                            break;
+                        }
+                    }
+
+                    if (selectedMember == null) {
+                        System.out.println("⚠ Member not found. Please try again or register first.");
+                        break;
+                    }
+
+                    String isbn = inputOrBack("Please enter book ISBN (or 'back' to cancel): ", scanner);
+                    if (isbn == null) break;
 
                     library.returnBook(isbn, memberId);
                 }
+
 
                 case 7 -> {
                     System.out.println("Exiting!");
