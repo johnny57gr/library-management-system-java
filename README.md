@@ -11,6 +11,8 @@ It allows managing books and members, borrowing and returning books, using a tex
 - Borrow a book
 - Return a book
 - Interactive command-line menu
+- Smart input handling with `back` option to return to main menu at any step
+- Error-safe user flow with feedback on invalid member IDs or ISBNs
 
 ### Built With
 
@@ -41,7 +43,7 @@ README.md
 <ul>
 <li>Created by Ioannis Passas</li>
 <li><a href="mailto:yiannispas86@gmail.com">yiannispas86@gmail.com</a></li>
-<li><a href="https://www.linkedin.com/in/yiannis-passas-94082abb/" target="_blank">Linkedin</a></li>
+<li><a href="https://www.linkedin.com/in/yiannis-passas-dev/" target="_blank">Linkedin</a></li>
 </ul>
 
 ### Notes
