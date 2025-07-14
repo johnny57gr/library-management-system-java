@@ -43,7 +43,7 @@ README.md
 <ul>
 <li>Created by Ioannis Passas</li>
 <li><a href="mailto:yiannispas86@gmail.com">yiannispas86@gmail.com</a></li>
-<li><a href="https://www.linkedin.com/in/yiannis-passas-dev/" target="_blank">Linkedin</a></li>
+<li>LinkedIn(https://www.linkedin.com/in/yiannis-passas-dev/)</li>
 </ul>
 
 ### Notes
